@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Details News
+{% endblock %}
+
+{% block body %}
+    <div align="center"> <h1> Details </h1> </div>
+<br>
+<!-- Tableau des news -->
+<div class='table-responsive'>
+<table class='table table-bordered table-hover'>
+	<tr class='table-primary'> <th> <b> Id </b></th> </tr>
+	<tr> <th> <b> Titre </b></th> </tr>
+	<tr> <th> <b> Contenu </b></th> </tr>
+	<tr> <th> <b> DateNews </b></th> </tr>
+	<tr> <th> <b> Image </b></th> </tr>
+    {% for uneNews in leNews %}
+    <tr> 
+        <td>{{ uneNews.titre }}</td>
+    </tr>
+    <tr> 
+        <td>{{ uneNews.contenu }}</td>
+    </tr>
+    <tr> 
+        <td>{{ uneNews.dateNews |date('d-m-Y') }}</td>
+    </tr>
+    <tr> 
+        <td> <img src="{{asset('/Images/divers/'~ uneNews.image)}}"></td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+	              
+{% endblock %}

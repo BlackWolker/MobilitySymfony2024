@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}ElectronicMobility{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+		{% block stylesheets %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+			<!-- Bootstrap core CSS -->
+			<link
+			href="{{asset ('css/bootstrap-5.3.1-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+			<!-- Custom styles for this template -->
+			<link
+			href="{{asset ('css/shop-homepage.css') }}" rel="stylesheet">
+
+			<!-- FontAweSome CSS -->
+			<link rel="stylesheet" href="{{asset ('css/fontawesome-free-6.4.2-web/css/all.min.css') }}">
+
+		{% endblock %}
+
+		{% block javascripts %}
+             <!-- Bootstrap core JavaScript -->
+                <script src="{{asset ('css/jquery/jquery-3.7.0.min.js')}}"></script>
+                <script src="{{asset ('css/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js')}}"></script>
         {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+	</head>
+	<body>
+
+        <!-- Navigation -->
+        {% include "menu.html.twig" %}
+
+		<!-- Page Content -->
+        <div class="container" style="margin:auto">
+            {% block body %}{% endblock %}
+        </div>
+                <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            {% include "footer.html.twig" %}
+        </footer>
+	</body>
 </html>
+

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">Catalogue</h1>
+        <div class="list-group">
+          <a href="{{ path('produit_index') }}" class="list-group-item">Toutes les catégories</a>
+          {% for uneCategorie in categories %}
+            <a href="{{ path('produit_index', { 'categorie': uneCategorie.id }) }}" class="list-group-item">
+              {{ uneCategorie.libelle }}
+            </a>
+          {% endfor %}
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <div class="row">
+          {% for message in app.flashes('panier') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>{{message}}</strong>
+              <button type="button" class="btn btn-close"></button>
+            </div>
+          {% endfor %}
+          {% for unProduit in lesProduits %}
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#">
+                  <img class="card-img-top" src="{{ asset('images/produits/' ~ unProduit.photo) }}" alt="{{ unProduit.designation }}">
+                </a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">{{ unProduit.designation }}</a>
+                  </h4>
+                  <h5>{{ unProduit.prix }} €</h5>
+                  <p class="card-text">{{ unProduit.detail }}</p>
+                </div>
+                <div class="card-footer">
+                  <a href="{{path('panier_add',{ 'id': unProduit.id})}}" class="btn btn-success">
+                    <i class="fas fa-cart-plus"></i> Ajouter
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+{% endblock %}

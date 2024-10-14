@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Suppression une New
+{% endblock %}
+
+{% block body %}
+ <h1>Ajout d'une news</h1>
+	        {{form_start(formNews)}}
+            {{form_row(formNews.titre,{'attr': {'readonly': 'readonly'} }) }}
+            {{form_row(formNews.dateNews,{'attr': {'readonly': 'readonly'} }) }}
+            {{form_row(formNews.contenu,{'attr': {'readonly': 'readonly'} }) }}
+            {{form_row(formNews.image,{'attr': {'readonly': 'readonly'} }) }}
+                <button class="btn btn-success">{{ button_label|default('Supprimer') }}</button>
+            {{form_end(formNews)}}
+                
+            <a class="btn btn-warning" href"{{ path('news_gestion') }}">Annuler</a>
+{% endblock %}
+

@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<div class="container">
+		<a class="navbar-brand" href="#">ELECTRIC MOBILITY</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link active" href="{{path ('news_index')}}">Accueil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path ('produit_index')}}">Catalogue</a>
+
+				</li>
+
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Gestion
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li>
+								<a class="dropdown-item" href="#">Catégories</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">News</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Produits</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('news_gestion')}}">Gestion</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Utilisateurs</a>
+							</li>
+						</ul>
+					</li>
+				{% endif %}
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						{% if (app.user == false) %}
+							<img src="{{asset("/images/divers/MenuConnexionKO.png")}}" width="20px">
+						{% else %}
+							<img src="{{asset("/images/divers/MenuConnexionOK.png")}}" width="20px">
+						{% endif %}
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li>
+							<a class="dropdown-item" href="{{path ('app_login')}}">Connexion</a>
+						</li>
+
+
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12">
+									<div class="card card-inverse" style="background-color: white; border-color: #333;">
+										<div class="card-block p-2">
+											<div class="row">
+												<p class="card-title"><?php echo $_SESSION['nom'] . " " . $_SESSION['prenom']; ?></p>
+												<p class="card-text">
+													<?php echo $_SESSION['login']; ?>
+													<span class="badge bg-success"><?php echo $_SESSION['groupe']; ?></span>
+												</p>
+												<p>
+													<a class='btn btn-primary' href='<?php echo WEBROOT;?>profil'><img width="16px" border="0" src='<?php echo WEBROOT;?>public/images/divers/Modifier.png'></a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<li>
+							<a class="dropdown-item" href="{{path ('app_logout')}}">Déconnexion</a>
+						</li>
+					</ul>
+				</li>
+
+     
+				<li class="nav-item">
+					<a class='nav-link' href='{{path('panier_index')}}'>
+						<i class="fas fa-shopping-cart"></i>&nbsp;
+						<label id="labelNbProd">{{app.session.get('nbproduitpanier')}}</label>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

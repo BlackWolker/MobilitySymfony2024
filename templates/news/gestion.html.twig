@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion News
+{% endblock %}
+
+{% block body %}
+    <div align="center"> <h1> Gestion des news </h1> </div>
+<br>
+<!-- Tableau des news -->
+<div class='table-responsive'>
+<table class='table table-bordered table-hover'>
+	<tr class='table-primary'>      
+                <th></th>     
+				<th> <b> Titre </b></th>
+				<th class="text-center"> <b> Date </b></th>
+				<th class="text-center"> <b> Modifier </b></th> 
+				<th class="text-center"> <b> Supprimer </b></th> 
+	</tr>
+    {% for uneNews in lesNews %}
+    <tr> <td class='text-center'><a href="{{path('news_show', { 'id': uneNews.id })}}">
+                    <img src="{{asset('/images/divers/loupe.png')}}"></a></td>
+    <td>{{ uneNews.titre }}</td>
+    <td class="text-center">{{ uneNews.dateNews|date('d-m-Y') }}</td>
+	<td class='text-center'> <a href="{{ path('news_edit', {'id': uneNews.id })}}">
+		           <img src='{{asset("/images/divers/Modifier.png")}}'></a></td>
+	<td class='text-center'> <a href="{{ path('news_delete', {'id': uneNews.id })}}">
+		           <img src='{{asset("/images/divers/poubelle.png")}}'></a></td>
+    {% endfor %}
+</table>
+</div>
+<p align='center'>
+	<a class='btn btn-success' href="{{ path('news_new')}}">
+	<img border=0 src='{{asset('/images/divers/Ajouter.png')}}'>&nbsp;Ajouter une news</a>
+</p>
+
+	              
+{% endblock %}
+

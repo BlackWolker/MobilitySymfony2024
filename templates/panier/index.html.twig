@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier
+{% endblock %}
+
+{% block body %}
+    <div align="center">
+    <h1>Votre Panier</h1>
+</div>
+<br>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>Photo</th>
+                <th>Categorie</th>
+                <th>Référence</th>
+                <th>Désignation</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Montant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if items is not empty %}
+                {% for donnees in items %}
+                    <tr>
+                        <td>
+                            <img src="{{ asset('/images/produits/' ~ donnees.photo ) }}" width="50" height="50">
+                        </td>
+                        <td>{{ donnees.uneCategorie }}</td>
+                        <td>{{ donnees.ref }}</td>
+                        <td>{{ donnees.lib }}</td>
+                        <td>{{ donnees.prix | number_format(2) }} €</td>
+                        <td>{{ donnees.qte }}</td>
+                        <td>{{ (donnees.prix * donnees.qte) | number_format(2) }} €</td>
+                        <td>
+                            <a href="{{ asset('panier/augmenter/' ~ donnees.ref) }}" class="btn btn-sm btn-success">+</a>
+                            <a href="{{ asset('panier/diminuer/' ~ donnees.ref) }}" class="btn btn-sm btn-warning">-</a>
+                            <a href="{{ asset('panier/supprimer/' ~ donnees.ref )}}" class="btn btn-sm btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">Votre panier est vide</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

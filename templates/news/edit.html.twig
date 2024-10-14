@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edite la New
+{% endblock %}
+
+{% block body %}
+ <h1>Ajout d'une news</h1>
+	        {{form_start(formNews)}}
+            {{form_widget(formNews)}}
+                <button class="btn btn-success">{{ button_label|default('Mettre à jour') }}</button>
+            {{form_end(formNews)}}
+                
+            <a class="btn btn-warning" href"{{ path('news_gestion') }}">Annuler</a>
+{% endblock %}
+
